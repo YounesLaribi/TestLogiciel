@@ -1,44 +1,28 @@
 package com.example.demo.service;
 
 import com.example.demo.data.Voiture;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@SpringBootTest
-public class StatistiqueImplTest {
 
-    private StatistiqueImpl statistiqueService;
 
-    @BeforeEach
-    void setUp() {
-        // Initialisation d'une nouvelle instance avant chaque test
-        statistiqueService = new StatistiqueImpl();
-    }
+public class StatistiqueTests {
 
-    @Test
-    void testPrixMoyenAvecVoitures() {
-        // 1. Données de test (Ajout de 3 voitures)
-        statistiqueService.ajouter(new Voiture("Peugeot", 20000));
-        statistiqueService.ajouter(new Voiture("Renault", 30000));
-        statistiqueService.ajouter(new Voiture("Tesla", 40000));
+    public static void main(Strings[] args){
+    
+        List<Voiture> voitures = new ArrayList<Voiture>();
+        Voiture voiture1= new Voiture("Ferrarri", 2);
+        Voiture voiture2= new Voiture("Lambo", 2);
+        Voiture voiture3= new Voiture("Rolls Royce", 2);
 
-        // 2. Exécution de la méthode à tester
-        Echantillon echantillon = statistiqueService.prixMoyen();
-
-        // 3. Vérifications (Moyenne attendue : (20k + 30k + 40k) / 3 = 30000)
-        assertNotNull(echantillon, "L'échantillon retourné ne doit pas être nul");
-        assertEquals(3, echantillon.getNombreDeVoitures(), "Le nombre de voitures doit être de 3");
-        assertEquals(30000, echantillon.getPrixMoyen(), "Le prix moyen calculé doit être de 30000");
-    }
-
-    @Test
-    void testPrixMoyenSansVoitureLeveException() {
-        // Si aucune voiture n'est ajoutée, la division par 0 doit lever une ArithmeticException
-        assertThrows(ArithmeticException.class, () -> {
-            statistiqueService.prixMoyen();
-        }, "Une ArithmeticException devrait être levée en cas de liste vide (division par zéro)");
+        @Test
+        voitures.ajouter(voiture1);
+        voitures.ajouter(voiture2);
+        voitures.ajouter(voiture3);
+        Assertions.assertEquals(voitures.prixMoyen(),2);
     }
 }
+
