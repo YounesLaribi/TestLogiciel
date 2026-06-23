@@ -26,7 +26,18 @@ class WebTests {
 
     @Autowired
     MockMvc mockMvc;
+   
+    @Test
+    void testCreerVoiture() throws Exception {
+        String voitureJson = "{\"marque\":\"f\",\"prix\":100}";
 
-  
+        mockMvc.perform(post("/voiture")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(voitureJson))
+                .andDo(print())
+                .andExpect(status().isOk());
 
+        verify(statistiqueImpl, times(1)).ajouter(any(Voiture.class));
+    }
 }
+
